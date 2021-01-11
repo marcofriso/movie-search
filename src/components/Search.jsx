@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 const Search = (props) => {
   const setTitle = (data) => props.inputTitle(data);
@@ -15,6 +16,12 @@ const Search = (props) => {
       <input type="text" onChange={(event) => setType(event.target.value)} />
     </div>
   );
+};
+
+Search.propTypes = {
+  inputTitle: PropTypes.func.isRequired,
+  inputYear: PropTypes.func.isRequired,
+  inputType: PropTypes.func.isRequired,
 };
 
 export default Search;

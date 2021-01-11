@@ -9,7 +9,7 @@ const App = () => {
   const [res, setRes] = useState();
 
   useEffect(() => {
-    let params = {
+    const params = {
       apikey: process.env.REACT_APP_API_KEY,
     };
 
@@ -20,10 +20,10 @@ const App = () => {
       params.type = type;
     }
     if (title) {
-      params.t = title + "*";
+      params.t = `${title}*`;
     }
 
-    fetch("https://www.omdbapi.com/?" + new URLSearchParams(params))
+    fetch(`https://www.omdbapi.com/?${new URLSearchParams(params)}`)
       .then((response) => response.json())
       .then((response) => {
         setRes(response);
