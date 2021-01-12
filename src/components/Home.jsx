@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Search from "./Search";
 import MoviesList from "./MoviesList";
-import "./App.css";
+import "./Home.css";
 
 const App = () => {
   const [title, setTitle] = useState();
@@ -38,8 +38,7 @@ const App = () => {
   }, [year, type, title, page]);
 
   return (
-    <div className="App">
-      <h1>Movies Search</h1>
+    <div className="Home">
       <Search
         inputTitle={(data) => setTitle(data)}
         inputYear={(data) => setYear(data)}

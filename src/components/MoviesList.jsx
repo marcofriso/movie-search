@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 const MoviesList = (props) => {
   const { res, page } = props;
   const setPage = (data) => props.inputPage(data);
+
   const maxPage = Math.ceil(res.totalResults / 10);
   const minusPageButtonDisable = page === 1;
   const plusPageButtonDisable = page === maxPage;
@@ -11,7 +12,6 @@ const MoviesList = (props) => {
   return (
     <div>
       <ul>
-        {Array.isArray(res.Search) && "HI"}
         {res.Search.map((movie) => (
           <li>
             <div>
