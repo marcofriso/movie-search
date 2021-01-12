@@ -8,11 +8,14 @@ const App = () => {
   const [year, setYear] = useState();
   const [type, setType] = useState();
   const [res, setRes] = useState();
+  const [page, setPage] = useState(1);
 
   useEffect(() => {
     const params = {
       apikey: process.env.REACT_APP_API_KEY,
     };
+
+    params.page = page;
 
     if (year) {
       params.year = year;
@@ -32,7 +35,7 @@ const App = () => {
         setRes(response);
       })
       .catch((error) => console.log(error));
-  }, [year, type, title]);
+  }, [year, type, title, page]);
 
   return (
     <div className="App">
@@ -43,7 +46,7 @@ const App = () => {
         inputType={(data) => setType(data)}
       />
       {res && res.Response === "True" ? (
-        <MoviesList res={res} />
+        <MoviesList res={res} page={page} inputPage={(data) => setPage(data)} />
       ) : (
         <p>{res && res.Error}</p>
       )}
