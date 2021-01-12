@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Search from "./Search";
+import MoviesList from "./MoviesList";
 import "./App.css";
 
 const App = () => {
@@ -20,8 +21,10 @@ const App = () => {
       params.type = type;
     }
     if (title) {
-      params.t = `${title}*`;
+      params.s = title;
     }
+
+    console.log(`https://www.omdbapi.com/?${new URLSearchParams(params)}`);
 
     fetch(`https://www.omdbapi.com/?${new URLSearchParams(params)}`)
       .then((response) => response.json())
@@ -39,7 +42,11 @@ const App = () => {
         inputYear={(data) => setYear(data)}
         inputType={(data) => setType(data)}
       />
-      <p>{JSON.stringify(res)}</p>
+      {res && res.Response === "True" ? (
+        <MoviesList res={res} />
+      ) : (
+        <p>{res && res.Error}</p>
+      )}
     </div>
   );
 };

@@ -56,6 +56,14 @@ const Search = (props) => {
           value="episode"
         />
         Episode
+        <input
+          className="form-check-input"
+          type="radio"
+          id="type4"
+          name="type"
+          value="game"
+        />
+        Game
       </div>
     </form>
   );
