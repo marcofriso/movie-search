@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
 const MoviesList = (props) => {
   const { res, page } = props;
@@ -13,20 +14,22 @@ const MoviesList = (props) => {
     <div>
       <ul>
         {res.Search.map((movie) => (
-          <li>
-            <div>
-              <p>Title: {movie.Title}</p>
-              <p>Year: {movie.Year}</p>
-              <p>imdbID: {movie.imdbID}</p>
-              <p>Type: {movie.Type}</p>
-            </div>
-            <div>
-              {movie.Poster === "N/A" ? (
-                "N/A"
-              ) : (
-                <img src={movie.Poster} alt="N/A" />
-              )}
-            </div>
+          <li key={movie.imdbID}>
+            <Link to={`/movie/${movie.imdbID}`}>
+              <div>
+                <p>Title: {movie.Title}</p>
+                <p>Year: {movie.Year}</p>
+                <p>imdbID: {movie.imdbID}</p>
+                <p>Type: {movie.Type}</p>
+              </div>
+              <div>
+                {movie.Poster === "N/A" ? (
+                  "N/A"
+                ) : (
+                  <img src={movie.Poster} alt="N/A" />
+                )}
+              </div>
+            </Link>
           </li>
         ))}
       </ul>
