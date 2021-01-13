@@ -42,7 +42,7 @@ const MoviesList = (props) => {
         >
           -
         </button>
-        {page}
+        {page}/{maxPage}
         <button
           type="submit"
           disabled={plusPageButtonDisable}

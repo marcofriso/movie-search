@@ -42,6 +42,7 @@ const App = () => {
         inputTitle={(data) => setTitle(data)}
         inputYear={(data) => setYear(data)}
         inputType={(data) => setType(data)}
+        inputPage={(data) => setPage(data)}
       />
       {res && res.Response === "True" ? (
         <MoviesList res={res} page={page} inputPage={(data) => setPage(data)} />

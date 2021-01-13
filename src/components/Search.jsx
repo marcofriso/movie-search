@@ -18,9 +18,18 @@ function debounce(func, wait, immediate) {
 }
 
 const Search = (props) => {
-  const setTitle = (data) => props.inputTitle(data);
-  const setYear = (data) => props.inputYear(data);
-  const setType = (data) => props.inputType(data);
+  const setTitle = (data) => {
+    props.inputTitle(data);
+    props.inputPage(1);
+  };
+  const setYear = (data) => {
+    props.inputYear(data);
+    props.inputPage(1);
+  };
+  const setType = (data) => {
+    props.inputType(data);
+    props.inputPage(1);
+  };
 
   return (
     <form>
@@ -89,6 +98,7 @@ Search.propTypes = {
   inputTitle: PropTypes.func.isRequired,
   inputYear: PropTypes.func.isRequired,
   inputType: PropTypes.func.isRequired,
+  inputPage: PropTypes.func.isRequired,
 };
 
 export default Search;
