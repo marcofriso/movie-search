@@ -32,7 +32,7 @@ const MoviesList = (props) => {
                   <img
                     className="img-movies-list lead text-dark"
                     src={movie.Poster}
-                    alt="N/A"
+                    alt=""
                   />
                 )}
               </div>
@@ -43,7 +43,7 @@ const MoviesList = (props) => {
       <nav>
         <ul className="pagination justify-content-center">
           <li className="page-item">
-            <p className="page-link border-0 text-dark">PAGE</p>
+            <p className="mb-3 px-3 py-2">PAGE</p>
           </li>
           <li className="page-item">
             <button
@@ -56,7 +56,7 @@ const MoviesList = (props) => {
             </button>
           </li>
           <li className="page-item">
-            <p className="page-link  text-dark">
+            <p className="page-link text-dark">
               {page}/{maxPage}
             </p>
           </li>

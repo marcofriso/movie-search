@@ -63,8 +63,7 @@ const Movie = (props) => {
                 <img
                   className="img-movie lead text-dark"
                   src={movie.Poster}
-                  onError="this.style.display='none'"
-                  alt="N/A"
+                  alt=""
                 />
               )}
             </div>
