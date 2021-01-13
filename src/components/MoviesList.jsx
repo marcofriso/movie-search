@@ -12,45 +12,66 @@ const MoviesList = (props) => {
 
   return (
     <div>
-      <ul>
+      <div className="mb-3">
         {res.Search.map((movie) => (
-          <li key={movie.imdbID}>
-            <Link to={`/movie/${movie.imdbID}`}>
-              <div>
+          <div key={movie.imdbID}>
+            <Link
+              to={`/movie/${movie.imdbID}`}
+              className="result-link d-flex flex-row justify-content-center align-items-center"
+            >
+              <div className="col mx-3 mt-2 lead text-dark">
                 <p>Title: {movie.Title}</p>
                 <p>Year: {movie.Year}</p>
                 <p>imdbID: {movie.imdbID}</p>
                 <p>Type: {movie.Type}</p>
               </div>
-              <div>
+              <div className="mx-3 my-2">
                 {movie.Poster === "N/A" ? (
-                  "N/A"
+                  <p className="alt-image lead text-dark">N/A</p>
                 ) : (
-                  <img src={movie.Poster} alt="N/A" />
+                  <img
+                    className="img-movies-list lead text-dark"
+                    src={movie.Poster}
+                    alt="N/A"
+                  />
                 )}
               </div>
             </Link>
-          </li>
+          </div>
         ))}
-      </ul>
-      <div>
-        PAGE:
-        <button
-          type="submit"
-          disabled={minusPageButtonDisable}
-          onClick={() => setPage(page - 1)}
-        >
-          -
-        </button>
-        {page}/{maxPage}
-        <button
-          type="submit"
-          disabled={plusPageButtonDisable}
-          onClick={() => setPage(page + 1)}
-        >
-          +
-        </button>
       </div>
+      <nav>
+        <ul className="pagination justify-content-center">
+          <li className="page-item">
+            <p className="page-link border-0 text-dark">PAGE</p>
+          </li>
+          <li className="page-item">
+            <button
+              className="page-link text-dark"
+              type="submit"
+              disabled={minusPageButtonDisable}
+              onClick={() => setPage(page - 1)}
+            >
+              -
+            </button>
+          </li>
+          <li className="page-item">
+            <p className="page-link  text-dark">
+              {page}/{maxPage}
+            </p>
+          </li>
+          <li className="page-item">
+            <button
+              className="page-link text-dark"
+              type="submit"
+              disabled={plusPageButtonDisable}
+              onClick={() => setPage(page + 1)}
+            >
+              +
+            </button>
+          </li>
+        </ul>
+      </nav>
     </div>
   );
 };

@@ -32,63 +32,93 @@ const Search = (props) => {
   };
 
   return (
-    <form>
-      <p>Insert title</p>
-      <input
-        type="text"
-        required
-        onChange={debounce((event) => setTitle(event.target.value), 300)}
-      />
-      <p>Year</p>
-      <input
-        type="number"
-        min="1900"
-        max="2100"
-        onChange={(event) => setYear(event.target.value)}
-      />
-      <p>Type</p>
-      <div onChange={(event) => setType(event.target.value)}>
-        <input
-          className="form-check-input"
-          type="radio"
-          id="type1"
-          name="type"
-          value=""
-          defaultChecked
-        />
-        Any
-        <input
-          className="form-check-input"
-          type="radio"
-          id="type2"
-          name="type"
-          value="movie"
-        />
-        Movie
-        <input
-          className="form-check-input"
-          type="radio"
-          id="type3"
-          name="type"
-          value="series"
-        />
-        Series
-        <input
-          className="form-check-input"
-          type="radio"
-          id="type4"
-          name="type"
-          value="episode"
-        />
-        Episode
-        <input
-          className="form-check-input"
-          type="radio"
-          id="type4"
-          name="type"
-          value="game"
-        />
-        Game
+    <form className="form-group">
+      <div className="d-flex flex-row justify-content-center">
+        <div className="form-group col">
+          <p className="font-weight-bold">Insert title</p>
+          <input
+            className="form-control text-center"
+            type="text"
+            required
+            onChange={debounce((event) => setTitle(event.target.value), 300)}
+          />
+        </div>
+        <div className="form-group col">
+          <p className="font-weight-bold">Year</p>
+          <input
+            className="form-control text-center"
+            type="number"
+            min="1900"
+            max="2100"
+            onChange={(event) => setYear(event.target.value)}
+          />
+        </div>
+        <div className="">
+          <p className="font-weight-bold">Type</p>
+          <div onChange={(event) => setType(event.target.value)}>
+            <div className="form-check-inline mt-2">
+              <input
+                className="form-check-input"
+                type="radio"
+                id="type1"
+                name="type"
+                value=""
+                defaultChecked
+              />
+              <label htmlFor="type1" className="form-check-label">
+                Any
+              </label>
+            </div>
+            <div className="form-check-inline mt-2">
+              <input
+                className="form-check-input"
+                type="radio"
+                id="type2"
+                name="type"
+                value="movie"
+              />
+              <label htmlFor="type2" className="form-check-label">
+                Movie
+              </label>
+            </div>
+            <div className="form-check-inline mt-2">
+              <input
+                className="form-check-input"
+                type="radio"
+                id="type3"
+                name="type"
+                value="series"
+              />
+              <label htmlFor="type3" className="form-check-label">
+                Series
+              </label>
+            </div>
+            <div className="form-check-inline mt-2">
+              <input
+                className="form-check-input"
+                type="radio"
+                id="type4"
+                name="type"
+                value="episode"
+              />
+              <label htmlFor="type4" className="form-check-label">
+                Episode
+              </label>
+            </div>
+            <div className="form-check-inline mt-2">
+              <input
+                className="form-check-input"
+                type="radio"
+                id="type5"
+                name="type"
+                value="game"
+              />
+              <label htmlFor="type5" className="form-check-label">
+                Game
+              </label>
+            </div>
+          </div>
+        </div>
       </div>
     </form>
   );

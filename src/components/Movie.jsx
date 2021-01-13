@@ -5,6 +5,7 @@ import { PropTypes } from "prop-types";
 const Movie = (props) => {
   const history = useHistory();
   const [movie, setMovie] = useState();
+
   // eslint-disable-next-line react/destructuring-assignment
   const { id } = props.match.params;
 
@@ -26,46 +27,61 @@ const Movie = (props) => {
 
   const filteredProps =
     movie &&
-    Object.keys(movie).filter((key) => key !== "Poster" && key !== "Ratings");
+    Object.keys(movie).filter(
+      (key) => key !== "Poster" && key !== "Ratings" && key !== "Title"
+    );
 
   return (
     <div>
       {movie && (
-        <div>
-          <div>
-            {filteredProps.map((pr) => (
-              <p key={pr}>
-                {pr}: {movie[pr]}
-              </p>
-            ))}
-          </div>
-          {movie.Ratings && (
-            <ul>
-              {movie.Ratings.map((rating) => (
-                <li key={rating.Source}>
-                  Source: {rating.Source} <br />
-                  Value: {rating.Value} <br />
-                </li>
+        <div className="mb-4">
+          <p className="display-4">{movie.Title}</p>
+          <div className="d-flex flex-row justify-content-center align-items-center">
+            <div className="col mx-3 mt-2">
+              {filteredProps.map((pr) => (
+                <p key={pr}>
+                  <strong>{pr}: </strong>
+                  {movie[pr]}
+                </p>
               ))}
-            </ul>
-          )}
-          <div>
-            {movie.Poster === "N/A" ? (
-              "N/A"
-            ) : (
-              <img src={movie.Poster} alt="N/A" />
-            )}
+              {movie.Ratings && (
+                <div>
+                  <strong>Ratings:</strong> <br />
+                  {movie.Ratings.map((rating) => (
+                    <div key={rating.Source}>
+                      Source: {rating.Source} <br />
+                      Value: {rating.Value} <br />
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+            <div className="mx-3 my-2">
+              {movie.Poster === "N/A" ? (
+                <p className="alt-image lead text-dark">N/A</p>
+              ) : (
+                <img
+                  className="img-movie lead text-dark"
+                  src={movie.Poster}
+                  onError="this.style.display='none'"
+                  alt="N/A"
+                />
+              )}
+            </div>
           </div>
         </div>
       )}
-      <button
-        type="submit"
-        onClick={() => {
-          history.goBack();
-        }}
-      >
-        Go Back
-      </button>
+      <nav className="pagination justify-content-center mb-4">
+        <button
+          className="page-link text-dark"
+          type="submit"
+          onClick={() => {
+            history.goBack();
+          }}
+        >
+          GO BACK
+        </button>
+      </nav>
     </div>
   );
 };

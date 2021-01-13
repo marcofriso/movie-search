@@ -26,6 +26,7 @@ const App = () => {
       params.s = title;
     }
 
+    // console log the search
     console.log(`https://www.omdbapi.com/?${new URLSearchParams(params)}`);
 
     fetch(`https://www.omdbapi.com/?${new URLSearchParams(params)}`)
@@ -47,7 +48,7 @@ const App = () => {
       {res && res.Response === "True" ? (
         <MoviesList res={res} page={page} inputPage={(data) => setPage(data)} />
       ) : (
-        <p>{res && res.Error}</p>
+        res && <p className="h4">{res.Error}</p>
       )}
     </div>
   );
