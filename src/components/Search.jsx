@@ -1,6 +1,22 @@
 import React from "react";
 import PropTypes from "prop-types";
 
+function debounce(func, wait, immediate) {
+  let timeout;
+  return function () {
+    const context = this;
+    const args = arguments;
+    const later = function () {
+      timeout = null;
+      if (!immediate) func.apply(context, args);
+    };
+    const callNow = immediate && !timeout;
+    clearTimeout(timeout);
+    timeout = setTimeout(later, wait);
+    if (callNow) func.apply(context, args);
+  };
+}
+
 const Search = (props) => {
   const setTitle = (data) => props.inputTitle(data);
   const setYear = (data) => props.inputYear(data);
@@ -12,7 +28,7 @@ const Search = (props) => {
       <input
         type="text"
         required
-        onChange={(event) => setTitle(event.target.value)}
+        onChange={debounce((event) => setTitle(event.target.value), 300)}
       />
       <p>Year</p>
       <input

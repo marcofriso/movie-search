@@ -71,11 +71,7 @@ const Movie = (props) => {
 };
 
 Movie.propTypes = {
-  match: {
-    params: {
-      id: PropTypes.string.isRequired,
-    },
-  },
+  match: PropTypes.objectOf(PropTypes.any),
 };
 
 Movie.defaultProps = {

@@ -4,7 +4,7 @@ import "./App.css";
 import Home from "./components/Home";
 import Movie from "./components/Movie";
 
-const AppRouter = () => (
+const App = () => (
   <BrowserRouter>
     <div className="App">
       <h1>Movies Search</h1>
@@ -16,4 +16,4 @@ const AppRouter = () => (
   </BrowserRouter>
 );
 
-export default AppRouter;
+export default App;

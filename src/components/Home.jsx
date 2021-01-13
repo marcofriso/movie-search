@@ -13,9 +13,8 @@ const App = () => {
   useEffect(() => {
     const params = {
       apikey: process.env.REACT_APP_API_KEY,
+      page,
     };
-
-    params.page = page;
 
     if (year) {
       params.year = year;
