@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
+// debounce function read in https://davidwalsh.name/javascript-debounce-function taken from Underscore.js
 function debounce(func, wait, immediate) {
   let timeout;
   return function () {

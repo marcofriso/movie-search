@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { useState, useEffect } from "react";
 import Search from "./Search";
 import MoviesList from "./MoviesList";
@@ -12,7 +13,6 @@ const App = () => {
 
   useEffect(() => {
     const params = {
-      apikey: process.env.REACT_APP_API_KEY,
       page,
     };
 
@@ -26,15 +26,16 @@ const App = () => {
       params.s = title;
     }
 
-    // console log the search
-    console.log(`https://www.omdbapi.com/?${new URLSearchParams(params)}`);
-
-    fetch(`https://www.omdbapi.com/?${new URLSearchParams(params)}`)
+    fetch("http://localhost:3001/search", {
+      method: "post",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(params),
+    })
       .then((response) => response.json())
       .then((response) => {
-        setRes(response);
+        setRes(JSON.parse(response));
       })
-      .catch((error) => console.log(error));
+      .catch((error) => console.log("FE-API ERROR", error));
   }, [year, type, title, page]);
 
   return (

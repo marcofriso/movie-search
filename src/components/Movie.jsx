@@ -15,14 +15,16 @@ const Movie = (props) => {
       i: id,
     };
 
-    console.log(`https://www.omdbapi.com/?${new URLSearchParams(params)}`);
-
-    fetch(`https://www.omdbapi.com/?${new URLSearchParams(params)}`)
+    fetch("http://localhost:3001/search", {
+      method: "post",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(params),
+    })
       .then((response) => response.json())
       .then((response) => {
-        setMovie(response);
+        setMovie(JSON.parse(response));
       })
-      .catch((error) => console.log(error));
+      .catch((error) => console.log("FE-API2 ERROR", error));
   }, [id]);
 
   const filteredProps =
