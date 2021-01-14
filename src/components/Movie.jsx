@@ -33,7 +33,7 @@ const Movie = (props) => {
 
   return (
     <div>
-      {movie && (
+      {movie ? (
         <div className="mb-4">
           <p className="display-4">{movie.Title}</p>
           <div className="d-flex flex-row justify-content-center align-items-center">
@@ -49,8 +49,8 @@ const Movie = (props) => {
                   <strong>Ratings:</strong> <br />
                   {movie.Ratings.map((rating) => (
                     <div key={rating.Source}>
-                      Source: {rating.Source} <br />
-                      Value: {rating.Value} <br />
+                      {rating.Source}: {rating.Value}
+                      <br />
                     </div>
                   ))}
                 </div>
@@ -69,8 +69,10 @@ const Movie = (props) => {
             </div>
           </div>
         </div>
+      ) : (
+        <div className="h4">Loading...</div>
       )}
-      <nav className="pagination justify-content-center mb-4">
+      <nav className="pagination justify-content-center fixed-bottom bg-white pt-2 pb-4">
         <button
           className="page-link text-dark"
           type="submit"
