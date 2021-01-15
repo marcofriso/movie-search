@@ -1,5 +1,68 @@
+/* App */
 .App {
   text-align: center;
   max-width: 1600px;
   margin: auto;
+}
+
+/* Header */
+.itemcenter {
+  flex: 0 1 auto;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.itemright {
+  flex: 0 1 auto;
+  margin-left: auto;
+}
+
+/* Home */
+.Home {
+  text-align: center;
+}
+
+/* MoviesList */
+.alt-image {
+  width: 300px;
+}
+
+.img-movies-list{
+  width: 300px;
+}
+
+.result-link:hover {
+  background-color: rgb(189, 255, 189);
+}
+
+/* MoviesList */
+.img-movie {
+  width: 400px;
+}
+
+.img-movie:before {  
+  content: "N/A";
+  display: block;
+  text-align: center;
+  position: relative;
+  top: 30%;
+  left: 0;
+  padding-top: 80px;
+  height: 200px;
+  width: 400px;
+}
+
+/* replace broken image logo */
+.img-movies-list:before {  
+  content: "N/A";
+  display: block;
+  text-align: center;
+  position: relative;
+  top: 10px;
+  left: 0;
+  padding-top: 80px;
+  height: 200px;
+  width: 300px;
+  border-radius: 5px;
 }

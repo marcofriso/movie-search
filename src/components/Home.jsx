@@ -2,7 +2,6 @@
 import React, { useState, useEffect } from "react";
 import Search from "./Search";
 import MoviesList from "./MoviesList";
-import "./Home.css";
 
 const App = () => {
   const [title, setTitle] = useState();
