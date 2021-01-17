@@ -8,6 +8,13 @@
   - [x] type 
   - [x] year
 
+## Branches
+
+There are 2 branches:
+
+- `master`: to be used standalone
+- `custom-backend`: to be used with [movie-search-api](https://github.com/marcofriso/movie-search-api), includes authentication.
+
 ## Instructions
 
  - Install: `npm i`

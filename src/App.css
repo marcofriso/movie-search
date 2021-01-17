@@ -18,6 +18,19 @@
   margin-left: auto;
 }
 
+.btn-logout:active {
+  outline:0;
+}
+
+.btn-logout:hover {
+  font-weight: 600;
+}
+
+/* Signup - Login */
+.signup-form, .signup-error-message {
+  width: 350px;
+}
+
 /* Home */
 .Home {
   text-align: center;

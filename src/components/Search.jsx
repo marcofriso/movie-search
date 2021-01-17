@@ -49,7 +49,7 @@ const Search = (props) => {
           <input
             className="form-control text-center"
             type="number"
-            min="1900"
+            min="1880"
             max="2100"
             onChange={(event) => setYear(event.target.value)}
           />
