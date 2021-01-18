@@ -1,4 +1,3 @@
-/* eslint-disable */
 import React, { useState, useEffect } from "react";
 import Search from "./Search";
 import MoviesList from "./MoviesList";
@@ -16,7 +15,7 @@ const App = () => {
     };
 
     if (year) {
-      params.year = year;
+      params.y = year;
     }
     if (type) {
       params.type = type;
@@ -32,7 +31,7 @@ const App = () => {
     })
       .then((response) => response.json())
       .then((response) => {
-        setRes(JSON.parse(response));
+        setRes(response);
       })
       .catch((error) => console.log("FE-API ERROR", error));
   }, [year, type, title, page]);

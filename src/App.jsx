@@ -1,12 +1,5 @@
 import React, { useState } from "react";
-import {
-  BrowserRouter,
-  Route,
-  Switch,
-  Link,
-  Redirect,
-  useHistory,
-} from "react-router-dom";
+import { BrowserRouter, Route, Switch, Link, Redirect } from "react-router-dom";
 import PropTypes from "prop-types";
 import "./App.css";
 import Home from "./components/Home";
@@ -16,8 +9,6 @@ import Signup from "./components/Signup";
 import Login from "./components/Login";
 
 const PrivateRoute = ({ path, component, exact, user }) => {
-  const history = useHistory();
-  console.log("PRIVATE-R", user, "P", path, "H", history.location);
   if (user) {
     return <Route component={component} path={path} exact={exact} />;
   }

@@ -11,7 +11,6 @@ const Movie = (props) => {
 
   useEffect(() => {
     const params = {
-      apikey: process.env.REACT_APP_API_KEY,
       i: id,
     };
 
@@ -22,7 +21,7 @@ const Movie = (props) => {
     })
       .then((response) => response.json())
       .then((response) => {
-        setMovie(JSON.parse(response));
+        setMovie(response);
       })
       .catch((error) => console.log("FE-API2 ERROR", error));
   }, [id]);

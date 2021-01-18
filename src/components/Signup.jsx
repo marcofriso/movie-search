@@ -32,7 +32,6 @@ const Signup = (props) => {
         .then((response) => response.json())
         .then((user) => {
           if (user.id) {
-            console.log("USER", user);
             setUser(user.name);
             setName("");
             setEmail("");
