@@ -8,6 +8,7 @@ const Login = (props) => {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
 
   const handleSubmit = (event) => {
     fetch("http://localhost:3001/login", {
@@ -21,10 +22,10 @@ const Login = (props) => {
       .then((response) => response.json())
       .then((user) => {
         if (user.id) {
-          console.log("LOGIN", user);
           setUser(user.name);
           history.push("/");
         } else {
+          setErrorMessage("Incorrect login data");
           console.log("FE - USER NOT FOUND");
         }
       })
@@ -51,6 +52,7 @@ const Login = (props) => {
                 placeholder="Enter email"
                 onChange={(event) => {
                   setEmail(event.target.value);
+                  setErrorMessage("");
                 }}
               />
             </div>
@@ -64,6 +66,7 @@ const Login = (props) => {
                 placeholder="Enter password"
                 onChange={(event) => {
                   setPassword(event.target.value);
+                  setErrorMessage("");
                 }}
               />
             </div>
@@ -80,6 +83,13 @@ const Login = (props) => {
             <u>Sign up</u>
           </Link>
         </div>
+        {errorMessage && (
+          <div className="row justify-content-center">
+            <div className="alert alert-danger signup-error-message mt-3">
+              <b>{errorMessage}</b>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
