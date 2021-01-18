@@ -24,7 +24,12 @@ const Login = (props) => {
           console.log("LOGIN", user);
           setUser(user.name);
           history.push("/");
+        } else {
+          console.log("FE - USER NOT FOUND");
         }
+      })
+      .catch((err) => {
+        console.log("FE - LOGIN API ERROR", err);
       });
 
     event.preventDefault();

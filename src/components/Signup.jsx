@@ -33,10 +33,6 @@ const Signup = (props) => {
         .then((user) => {
           if (user.id) {
             setUser(user.name);
-            setName("");
-            setEmail("");
-            setPassword("");
-            setRepeatedPassword("");
             history.push("/");
           }
         });
