@@ -9,6 +9,7 @@ import Header from "./components/Header";
 import Signup from "./components/Signup";
 import Login from "./components/Login";
 
+// routes
 const PublicRoute = ({ path, render, user }) => {
   if (user) {
     return <Redirect to="/" />;
@@ -45,6 +46,7 @@ PrivateRoute.defaultProps = {
   exact: false,
 };
 
+// components
 const NotFoundPage = () => (
   <div className="h5 text-dark">
     404! -{" "}

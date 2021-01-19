@@ -1,35 +1,17 @@
 import React from "react";
-import PropTypes from "prop-types";
+import { useStoreContext } from "../utils/Store";
 
-// debounce function read in https://davidwalsh.name/javascript-debounce-function taken from Underscore.js
-function debounce(func, wait, immediate) {
-  let timeout;
-  return function () {
-    const context = this;
-    const args = arguments;
-    const later = function () {
-      timeout = null;
-      if (!immediate) func.apply(context, args);
-    };
-    const callNow = immediate && !timeout;
-    clearTimeout(timeout);
-    timeout = setTimeout(later, wait);
-    if (callNow) func.apply(context, args);
-  };
-}
+// see if it is possible to reintroduce "debounce" functionality
 
-const Search = (props) => {
-  const setTitle = (data) => {
-    props.inputTitle(data);
-    props.inputPage(1);
-  };
-  const setYear = (data) => {
-    props.inputYear(data);
-    props.inputPage(1);
-  };
-  const setType = (data) => {
-    props.inputType(data);
-    props.inputPage(1);
+const Search = () => {
+  const { params, setParams } = useStoreContext();
+
+  const onChange = (e) => {
+    const { value, name } = e.target;
+    const searchParams = { ...params };
+    searchParams[name] = value;
+
+    setParams(searchParams);
   };
 
   return (
@@ -41,7 +23,9 @@ const Search = (props) => {
             className="form-control text-center"
             type="text"
             required
-            onChange={debounce((event) => setTitle(event.target.value), 300)}
+            value={params.s}
+            name="s"
+            onChange={onChange}
           />
         </div>
         <div className="form-group col">
@@ -51,12 +35,14 @@ const Search = (props) => {
             type="number"
             min="1880"
             max="2100"
-            onChange={(event) => setYear(event.target.value)}
+            value={params.y}
+            name="y"
+            onChange={onChange}
           />
         </div>
-        <div className="">
+        <div>
           <p className="font-weight-bold">Type</p>
-          <div onChange={(event) => setType(event.target.value)}>
+          <div name="type">
             <div className="form-check-inline mt-2">
               <input
                 className="form-check-input"
@@ -64,7 +50,8 @@ const Search = (props) => {
                 id="type1"
                 name="type"
                 value=""
-                defaultChecked
+                checked={params.type === ""}
+                onChange={onChange}
               />
               <label htmlFor="type1" className="form-check-label">
                 Any
@@ -77,6 +64,8 @@ const Search = (props) => {
                 id="type2"
                 name="type"
                 value="movie"
+                checked={params.type === "movie"}
+                onChange={onChange}
               />
               <label htmlFor="type2" className="form-check-label">
                 Movie
@@ -89,6 +78,8 @@ const Search = (props) => {
                 id="type3"
                 name="type"
                 value="series"
+                checked={params.type === "series"}
+                onChange={onChange}
               />
               <label htmlFor="type3" className="form-check-label">
                 Series
@@ -101,6 +92,8 @@ const Search = (props) => {
                 id="type4"
                 name="type"
                 value="episode"
+                checked={params.type === "episode"}
+                onChange={onChange}
               />
               <label htmlFor="type4" className="form-check-label">
                 Episode
@@ -113,6 +106,8 @@ const Search = (props) => {
                 id="type5"
                 name="type"
                 value="game"
+                checked={params.type === "game"}
+                onChange={onChange}
               />
               <label htmlFor="type5" className="form-check-label">
                 Game
@@ -123,13 +118,6 @@ const Search = (props) => {
       </div>
     </form>
   );
-};
-
-Search.propTypes = {
-  inputTitle: PropTypes.func.isRequired,
-  inputYear: PropTypes.func.isRequired,
-  inputType: PropTypes.func.isRequired,
-  inputPage: PropTypes.func.isRequired,
 };
 
 export default Search;

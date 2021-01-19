@@ -1,10 +1,14 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
+import { useStoreContext } from "../utils/Store";
 
 const MoviesList = (props) => {
-  const { res, page } = props;
-  const setPage = (data) => props.inputPage(data);
+  const { res } = props;
+  const { params, setParams } = useStoreContext();
+
+  const { page } = params;
+  const setPage = (newPage) => setParams({ ...params, page: newPage });
 
   const maxPage = Math.ceil(res.totalResults / 10);
   const minusPageButtonDisable = page === 1;
@@ -79,8 +83,6 @@ const MoviesList = (props) => {
 MoviesList.propTypes = {
   // eslint-disable-next-line
   res: PropTypes.object,
-  page: PropTypes.number.isRequired,
-  inputPage: PropTypes.func.isRequired,
 };
 
 export default MoviesList;
