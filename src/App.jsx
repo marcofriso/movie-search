@@ -11,7 +11,9 @@ import Signup from "./components/Signup";
 import Login from "./components/Login";
 
 // routes
-const PublicRoute = ({ path, component, user }) => {
+const PublicRoute = ({ path, component }) => {
+  const { user } = useStoreContext();
+
   if (user) {
     return <Redirect to="/" />;
   }
@@ -20,15 +22,12 @@ const PublicRoute = ({ path, component, user }) => {
 
 PublicRoute.propTypes = {
   path: PropTypes.string.isRequired,
-  user: PropTypes.string,
   component: PropTypes.func.isRequired,
 };
 
-PublicRoute.defaultProps = {
-  user: "",
-};
+const PrivateRoute = ({ path, component, exact }) => {
+  const { user } = useStoreContext();
 
-const PrivateRoute = ({ path, component, exact, user }) => {
   if (user) {
     return <Route component={component} path={path} exact={exact} />;
   }
@@ -39,7 +38,6 @@ PrivateRoute.propTypes = {
   path: PropTypes.string.isRequired,
   component: PropTypes.func,
   exact: PropTypes.bool,
-  user: PropTypes.string.isRequired,
 };
 
 PrivateRoute.defaultProps = {
@@ -57,23 +55,19 @@ const NotFoundPage = () => (
   </div>
 );
 
-const App = () => {
-  const { user, setUser } = useStoreContext();
-
-  return (
-    <BrowserRouter>
-      <div className="App px-3">
-        <Header user={user} inputUser={(data) => setUser(data)} />
-        <Switch>
-          <PublicRoute path="/signup" user={user} component={Signup} />
-          <PublicRoute path="/login" user={user} component={Login} />
-          <PrivateRoute user={user} path="/" component={Home} exact />
-          <PrivateRoute user={user} path="/movie/:id" component={Movie} exact />
-          <Route component={NotFoundPage} />
-        </Switch>
-      </div>
-    </BrowserRouter>
-  );
-};
+const App = () => (
+  <BrowserRouter>
+    <div className="App px-3">
+      <Header />
+      <Switch>
+        <PublicRoute path="/signup" component={Signup} />
+        <PublicRoute path="/login" component={Login} />
+        <PrivateRoute path="/" component={Home} exact />
+        <PrivateRoute path="/movie/:id" component={Movie} exact />
+        <Route component={NotFoundPage} />
+      </Switch>
+    </div>
+  </BrowserRouter>
+);
 
 export default App;

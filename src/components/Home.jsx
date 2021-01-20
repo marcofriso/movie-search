@@ -3,7 +3,7 @@ import { useStoreContext } from "../utils/Store";
 import Search from "./Search";
 import MoviesList from "./MoviesList";
 
-const App = () => {
+const Home = () => {
   const { params } = useStoreContext();
   const [res, setRes] = useState();
 
@@ -48,4 +48,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default Home;

@@ -44,7 +44,12 @@ const Signup = () => {
           if (user.id) {
             setUser(user.name);
             history.push("/");
+          } else {
+            setErrorMessage("Email already in the database");
           }
+        })
+        .catch((err) => {
+          console.log("FE - SIGNUP API ERROR", err);
         });
     }
 
