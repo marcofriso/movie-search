@@ -8,8 +8,6 @@ const Home = () => {
   const [res, setRes] = useState();
 
   useEffect(() => {
-    if (!params.s) return <p className="h4">Please enter a title</p>;
-
     const apiParams = {
       page: params.page,
       s: params.s,
@@ -39,6 +37,8 @@ const Home = () => {
       <Search />
       {!params.s ? (
         <p className="h4">Please enter a title</p>
+      ) : params.y && (params.y > 2100 || params.y < 1895) ? (
+        <p className="h4">Please enter a valid year</p>
       ) : res && res.Response === "True" ? (
         <MoviesList res={res} />
       ) : (

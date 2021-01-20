@@ -24,6 +24,7 @@ const Search = () => {
             required
             value={params.s}
             name="s"
+            placeholder="Enter title"
             onChange={onChange}
           />
         </div>
@@ -32,10 +33,11 @@ const Search = () => {
           <input
             className="form-control text-center"
             type="number"
-            min="1880"
+            min="1895"
             max="2100"
             value={params.y}
             name="y"
+            placeholder="Enter year"
             onChange={onChange}
           />
         </div>
