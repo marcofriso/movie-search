@@ -6,8 +6,11 @@ const Movie = (props) => {
   const history = useHistory();
   const [movie, setMovie] = useState();
 
-  // eslint-disable-next-line react/destructuring-assignment
-  const { id } = props.match.params;
+  const {
+    match: {
+      params: { id },
+    },
+  } = props;
 
   useEffect(() => {
     const params = {
