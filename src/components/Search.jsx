@@ -8,8 +8,7 @@ const Search = () => {
 
   const onChange = (e) => {
     const { value, name } = e.target;
-    const searchParams = { ...params };
-    searchParams[name] = value;
+    const searchParams = { ...params, [name]: value };
 
     setParams(searchParams);
   };

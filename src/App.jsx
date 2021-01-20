@@ -1,8 +1,9 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React, { useState } from "react";
-import { BrowserRouter, Route, Switch, Link, Redirect } from "react-router-dom";
+import React from "react";
 import PropTypes from "prop-types";
+import { BrowserRouter, Route, Switch, Link, Redirect } from "react-router-dom";
 import "./App.css";
+import { useStoreContext } from "./utils/Store";
 import Home from "./components/Home";
 import Movie from "./components/Movie";
 import Header from "./components/Header";
@@ -10,17 +11,17 @@ import Signup from "./components/Signup";
 import Login from "./components/Login";
 
 // routes
-const PublicRoute = ({ path, render, user }) => {
+const PublicRoute = ({ path, component, user }) => {
   if (user) {
     return <Redirect to="/" />;
   }
-  return <Route path={path} render={render} />;
+  return <Route path={path} component={component} />;
 };
 
 PublicRoute.propTypes = {
   path: PropTypes.string.isRequired,
   user: PropTypes.string,
-  render: PropTypes.func.isRequired,
+  component: PropTypes.func.isRequired,
 };
 
 PublicRoute.defaultProps = {
@@ -57,27 +58,15 @@ const NotFoundPage = () => (
 );
 
 const App = () => {
-  const [user, setUser] = useState("");
+  const { user, setUser } = useStoreContext();
 
   return (
     <BrowserRouter>
       <div className="App px-3">
         <Header user={user} inputUser={(data) => setUser(data)} />
         <Switch>
-          <PublicRoute
-            path="/signup"
-            user={user}
-            render={(props) => (
-              <Signup {...props} inputUser={(data) => setUser(data)} />
-            )}
-          />
-          <PublicRoute
-            path="/login"
-            user={user}
-            render={(props) => (
-              <Login {...props} inputUser={(data) => setUser(data)} />
-            )}
-          />
+          <PublicRoute path="/signup" user={user} component={Signup} />
+          <PublicRoute path="/login" user={user} component={Login} />
           <PrivateRoute user={user} path="/" component={Home} exact />
           <PrivateRoute user={user} path="/movie/:id" component={Movie} exact />
           <Route component={NotFoundPage} />

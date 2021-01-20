@@ -1,12 +1,11 @@
 import React from "react";
-import PropTypes from "prop-types";
 import { useHistory } from "react-router-dom";
+import { useStoreContext } from "../utils/Store";
 
-const Header = (props) => {
+const Header = () => {
   const history = useHistory();
-  const setUser = (data) => props.inputUser(data);
+  const { user, setUser } = useStoreContext();
 
-  const { user } = props;
   const handleClick = (event) => {
     setUser("");
     history.push("/login");
@@ -37,11 +36,6 @@ const Header = (props) => {
       )}
     </div>
   );
-};
-
-Header.propTypes = {
-  user: PropTypes.string.isRequired,
-  inputUser: PropTypes.func.isRequired,
 };
 
 export default Header;

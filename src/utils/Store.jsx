@@ -11,13 +11,13 @@ export const StoreProvider = ({ children }) => {
     y: "",
     type: "",
   });
-  // const [user, setUser] = useState("");
+  const [user, setUser] = useState("");
 
   const store = {
     params,
-    // user,
+    user,
     setParams,
-    // setUser,
+    setUser,
   };
 
   StoreProvider.propTypes = {

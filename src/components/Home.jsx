@@ -7,7 +7,6 @@ const App = () => {
   const { params } = useStoreContext();
   const [res, setRes] = useState();
 
-  // eslint-disable-next-line consistent-return
   useEffect(() => {
     if (!params.s) return <p className="h4">Please enter a title</p>;
 
@@ -23,7 +22,7 @@ const App = () => {
       apiParams.type = params.type;
     }
 
-    fetch("http://localhost:3001/search", {
+    return fetch("http://localhost:3001/search", {
       method: "post",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(apiParams),

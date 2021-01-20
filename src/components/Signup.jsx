@@ -1,16 +1,26 @@
 import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
-import PropTypes from "prop-types";
+import { useStoreContext } from "../utils/Store";
 
-const Signup = (props) => {
+const Signup = () => {
   const history = useHistory();
-  const setUser = (data) => props.inputUser(data);
+  const { setUser } = useStoreContext();
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [repeatedPassword, setRepeatedPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+
+  const onChange = (e) => {
+    const { value, id } = e.target;
+    if (id === "name") setName(value);
+    if (id === "email") setEmail(value);
+    if (id === "password") setPassword(value);
+    if (id === "repeatedPassword") setRepeatedPassword(value);
+
+    setErrorMessage("");
+  };
 
   const handleSubmit = (event) => {
     if (!name) setErrorMessage("Please insert a name");
@@ -56,10 +66,8 @@ const Signup = (props) => {
                 id="name"
                 className="form-control"
                 placeholder="Enter name"
-                onChange={(event) => {
-                  setName(event.target.value);
-                  setErrorMessage("");
-                }}
+                name="setName"
+                onChange={onChange}
               />
             </div>
             <div className="form-group mt-3">
@@ -71,10 +79,7 @@ const Signup = (props) => {
                 id="email"
                 className="form-control"
                 placeholder="Enter email"
-                onChange={(event) => {
-                  setEmail(event.target.value);
-                  setErrorMessage("");
-                }}
+                onChange={onChange}
               />
             </div>
             <div className="form-group">
@@ -86,10 +91,7 @@ const Signup = (props) => {
                 id="password"
                 className="form-control"
                 placeholder="Enter password"
-                onChange={(event) => {
-                  setPassword(event.target.value);
-                  setErrorMessage("");
-                }}
+                onChange={onChange}
               />
             </div>
             <div className="form-group">
@@ -101,10 +103,7 @@ const Signup = (props) => {
                 id="repeatedPassword"
                 className="form-control"
                 placeholder="Enter password"
-                onChange={(event) => {
-                  setRepeatedPassword(event.target.value);
-                  setErrorMessage("");
-                }}
+                onChange={onChange}
               />
             </div>
             <button
@@ -130,10 +129,6 @@ const Signup = (props) => {
       </div>
     </div>
   );
-};
-
-Signup.propTypes = {
-  inputUser: PropTypes.func.isRequired,
 };
 
 export default Signup;
