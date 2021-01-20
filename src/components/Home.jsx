@@ -20,16 +20,18 @@ const Home = () => {
       apiParams.type = params.type;
     }
 
-    return fetch("http://localhost:3001/search", {
-      method: "post",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(apiParams),
-    })
-      .then((response) => response.json())
-      .then((response) => {
-        setRes(response);
+    if (params.s && (!params.y || (params.y > 1895 && params.y < 2100))) {
+      fetch("http://localhost:3001/search", {
+        method: "post",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(apiParams),
       })
-      .catch((error) => console.log("FE-API ERROR", error));
+        .then((response) => response.json())
+        .then((response) => {
+          setRes(response);
+        })
+        .catch((error) => console.log("FE-API ERROR", error));
+    }
   }, [params]);
 
   return (
