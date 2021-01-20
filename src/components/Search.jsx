@@ -1,7 +1,6 @@
 import React from "react";
+import { DebounceInput } from "react-debounce-input";
 import { useStoreContext } from "../utils/Store";
-
-// see if it is possible to reintroduce "debounce" functionality
 
 const Search = () => {
   const { params, setParams } = useStoreContext();
@@ -18,19 +17,20 @@ const Search = () => {
       <div className="d-flex flex-row justify-content-center">
         <div className="form-group col">
           <p className="font-weight-bold">Insert title</p>
-          <input
+          <DebounceInput
             className="form-control text-center"
             type="text"
             required
             value={params.s}
             name="s"
             placeholder="Enter title"
+            debounceTimeout={300}
             onChange={onChange}
           />
         </div>
         <div className="form-group col">
           <p className="font-weight-bold">Year</p>
-          <input
+          <DebounceInput
             className="form-control text-center"
             type="number"
             min="1895"
@@ -38,6 +38,7 @@ const Search = () => {
             value={params.y}
             name="y"
             placeholder="Enter year"
+            debounceTimeout={300}
             onChange={onChange}
           />
         </div>
