@@ -7,6 +7,9 @@ const Home = () => {
   const { params } = useStoreContext();
   const [res, setRes] = useState();
 
+  const hasTitle = !!params.s;
+  const isYearValid = !params.y || (params.y > 1895 && params.y < 2100);
+
   useEffect(() => {
     const apiParams = {
       page: params.page,
@@ -20,7 +23,7 @@ const Home = () => {
       apiParams.type = params.type;
     }
 
-    if (params.s && (!params.y || (params.y > 1895 && params.y < 2100))) {
+    if (hasTitle && isYearValid) {
       fetch("http://localhost:3001/search", {
         method: "post",
         headers: { "Content-Type": "application/json" },
@@ -32,14 +35,14 @@ const Home = () => {
         })
         .catch((error) => console.log("FE-API ERROR", error));
     }
-  }, [params]);
+  }, [params, hasTitle, isYearValid]);
 
   return (
     <div className="Home">
       <Search />
-      {!params.s ? (
+      {!hasTitle ? (
         <p className="h4">Please enter a title</p>
-      ) : params.y && (params.y > 2100 || params.y < 1895) ? (
+      ) : !isYearValid ? (
         <p className="h4">Please enter a valid year</p>
       ) : res && res.Response === "True" ? (
         <MoviesList res={res} />
