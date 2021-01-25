@@ -71,7 +71,6 @@ const Signup = () => {
                 id="name"
                 className="form-control"
                 placeholder="Enter name"
-                name="setName"
                 onChange={onChange}
               />
             </div>

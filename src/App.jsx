@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-props-no-spreading */
 import React from "react";
 import PropTypes from "prop-types";
 import { BrowserRouter, Route, Switch, Link, Redirect } from "react-router-dom";
