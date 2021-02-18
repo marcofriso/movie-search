@@ -17,5 +17,5 @@ There are 2 branches:
 
 ## Instructions
 
- - Install: `npm i`
+ - Install: `npm i` or `pnpm i`
  - Run `npm run start`
